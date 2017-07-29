@@ -34,23 +34,24 @@ mv bootable.iso out/x86_64-pc.iso &&
 cp build/kernel/kernel out/x86_64-pc.elf
 
 #arm-3ds9 config
-{
-    echo 2 #arm
-    echo 0 #3ds9
-    yes ''
-} | ./config.py &&
+builddir &&
+pushd build &&
+git clone https://github.com/MTGos/mtgos-3ds9 &&
+pushd mtgos-3ds9 &&
 builddir &&
 pushd build &&
 cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/arm-none-eabi.cmake .. &&
 make -j$(nproc) &&
 popd &&
-mv build/kernel/kernel kernel9 &&
+mv build/kernel/kernel ../../kernel9
+popd &&
+popd &&
 cp -v kernel9 out/arm9loaderhax.elf
 
 #arm-3ds11 config
 {
     echo 2 #arm
-    echo 1 #3ds11
+    echo 0 #3ds11
     yes ''
 } | ./config.py &&
 builddir &&
@@ -65,7 +66,7 @@ cp -v build/kernel/kernel out/arm11loaderhax.elf
 
 {
     echo 2
-    echo 2
+    echo 1
     yes ''
 } | ./config.py &&
 builddir &&
