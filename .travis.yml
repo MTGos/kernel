@@ -3,6 +3,7 @@ language: python
 install:
     - cd ~
     - git clone --depth=1 https://github.com/MTGos/cross-compilers opt
+    - sudo apt-get install libfl-dev
     - |
         CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz"
         mkdir -p cmake &&
