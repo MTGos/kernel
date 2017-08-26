@@ -3,7 +3,7 @@ language: python
 install:
     - cd ~
     - git clone --depth=1 https://github.com/MTGos/cross-compilers opt
-    - sudo apt-get install cmake
+    - cd -
 
 python:
     - "3.4"
