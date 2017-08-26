@@ -10,6 +10,7 @@ python:
 
 script:
     - bash do_all.sh
+    - cd out
 
 deploy:
     provider: pages
@@ -19,5 +20,4 @@ deploy:
         branch: master
     target_branch: kernel
     repo: https://github.com/MTGos/nightlies
-    local_dir: ~/kernel/out/
 
