@@ -12,7 +12,7 @@ mkdir -pv out/
 } | ./config.py &&
 builddir &&
 pushd build &&
-cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/i686-elf.cmake .. || cat /home/travis/build/MTGos/kernel/build/CMakeFiles/CMakeError.log && exit -1
+cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/i686-elf.cmake .. &&
 make -j$(nproc) &&
 popd &&
 buildtools/grub-iso.sh &&

@@ -7,6 +7,7 @@
 
 PICAfb term;
 PMM_MMAP lpmm;
+
 void main();
 extern "C" void start() { main(); }
 void drivers_init() {

@@ -5,16 +5,12 @@ typedef uintptr_t phys_t; ///< Type used for physical addresses
 /**
  * A single entry in the PMM list
  */
-struct PMM_ent {
-    PMM_ent* next; ///< Next element in the list
-    phys_t val; ///< This for not having to cast in the code.
-};
 /**
  * Physical memory manager. It stores the free memory in a linked list
  */
 class PMM {
     protected:
-        PMM_ent *head; ///< Head of the linked list
+        phys_t first_free;
         virtual auto isFree(phys_t addr) -> bool; ///< Returns true if the provided page is free to use
         auto fill() -> void;
         phys_t page_size; ///< Contains the size of a single memory page, in bytes
