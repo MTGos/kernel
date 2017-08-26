@@ -1,0 +1,23 @@
+language: python
+
+install:
+    - cd ~
+    - git clone --depth=1 https://github.com/MTGos/cross-compilers opt
+    - sudo apt-get install cmake
+
+python:
+    - "3.4"
+
+script:
+    - bash do_all.sh
+
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+        branch: master
+    target_branch: kernel
+    repo: https://github.com/MTGos/nightlies
+    local_dir: ~/kernel/out/
+
