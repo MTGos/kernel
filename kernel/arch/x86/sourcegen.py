@@ -45,6 +45,7 @@ int_handler.write("    push %esp\n    jmp panic2\n")
 int_handler.write(".section .data\n"+data_section)
 
 print("Generating cpu_state struct")
+reg_struct.write("#pragma once\n")
 reg_struct.write("#include <stdint.h>\n")
 if config["ENABLE_FPU"] and not config["ENABLE_SSE"]:
     reg_struct.write("struct fpu_state {\n")

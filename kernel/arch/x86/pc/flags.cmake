@@ -1,3 +1,3 @@
-SET(PLATFORM_C_FLAGS "-I../../kernel/arch/x86/pc/include -O2")
+SET(PLATFORM_C_FLAGS "-I../../kernel/arch/x86/pc/include -O0")
 SET(PLATFORM_CXX_FLAGS "${PLATFORM_C_FLAGS}")
 SET(PLATFORM_ASM_FLAGS "${PLATFORM_C_FLAGS}")

@@ -28,7 +28,7 @@ auto PMM_MB::isFree(phys_t addr) -> bool {
     }
     if(!free)
         return false;
-    if(addr == (phys_t)((uintptr_t)mb_info))
+    if((addr >= (phys_t)((uintptr_t)mb_info)) && (addr < (phys_t)((uintptr_t)mb_info)+0x1000))
         return false;
     return PMM::isFree(addr);
 }

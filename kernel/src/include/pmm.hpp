@@ -20,10 +20,11 @@ class PMM {
         PMM(phys_t page_size);
         virtual ~PMM();
         virtual auto operator<<(phys_t page) -> PMM &; ///< Frees a page. O(1)
-        virtual auto operator>>(phys_t &page) -> PMM &; ///< Allocates a page. O(1)
-        virtual auto operator,(size_t no_pages) -> phys_t; ///< Allocates multiple pages. O(n²)
+        virtual auto operator>>(phys_t &page) -> PMM &; ///< Allocates a page. Probably O(log n)
+        virtual auto operator,(size_t no_pages) -> phys_t; ///< Allocates multiple pages. O(n)
         virtual auto operator()(phys_t pages,size_t no_pages) -> void; ///< Deallocates multiple pages. O(n)
-        virtual auto operator&&(phys_t page) -> bool; //Returns true if this page is free. O(n).
+        virtual auto operator&&(phys_t page) -> bool; //Returns true if this page is free. O(1).
+        virtual auto setUsed(phys_t page) -> void; //Marks a page as used. O(1).
 };
 /**
  * This definition is for having a python-like syntax - like `page in pmm`

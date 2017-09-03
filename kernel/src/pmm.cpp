@@ -16,7 +16,12 @@ auto PMM::isFree(phys_t addr) -> bool {
         return false;
     return true;
 }
-PMM::PMM(phys_t page_size): page_size(page_size), first_free(0), lowest_page(~0), highest_page(0) {}
+PMM::PMM(phys_t page_size): page_size(page_size), first_free(0), lowest_page(~0), highest_page(0) {
+    for(int i=0;i<32768;i++) {
+        pmm_bitmap[i]=0;
+    }
+    pmm = this;
+}
 void PMM::fill() {
     for(phys_t i=highest_page; i>=lowest_page && i; i-=page_size) {
         if(isFree(i))
@@ -97,6 +102,8 @@ auto PMM::operator()(phys_t pages, size_t no_pages) -> void {
     if(pages < first_free)
         first_free = pages;
     for(size_t i=0; i<no_pages; i++, pages+=page_size) {
+        if(!isFree(pages))
+            continue;
         phys_t index = pageno >> 5;
         phys_t bit = pageno & 31;
         pmm_bitmap[index] |= 1<<bit;
@@ -112,6 +119,12 @@ auto PMM::operator&&(phys_t page) -> bool {
     if(!(pmm_bitmap[index] & (1<<bit)))
         return false;
     return true;
+}
+auto PMM::setUsed(phys_t page) -> void {
+    phys_t pageno = page / page_size;
+    phys_t index = pageno >> 5;
+    phys_t bit = pageno & 31;
+    pmm_bitmap[index] &= ~(1<<bit);
 }
 auto operator&&(phys_t a, PMM mm) -> bool {
     return mm && a;
