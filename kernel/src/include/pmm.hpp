@@ -7,8 +7,7 @@ typedef uintptr_t phys_t; ///< Type used for physical addresses
 /**
  * A single entry in the PMM list
  */
-
-#if BITS == 32
+#ifndef __x86_64__
 /**
  * Physical memory manager. It stores the free memory in a linked list
  */
@@ -32,7 +31,6 @@ class PMM {
 };
 
 #else
-
 struct pmm_entry {
     phys_t next;
     phys_t last;

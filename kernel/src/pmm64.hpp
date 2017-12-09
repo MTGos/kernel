@@ -93,6 +93,7 @@ auto PMM::operator,(size_t no_pages) -> phys_t {
 outlbl:
         continue;
     }
+    panic("Ran out of memory");
 }
 
 auto PMM::operator()(phys_t pages, size_t no_pages) -> void {

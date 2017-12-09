@@ -1,12 +1,11 @@
 #pragma once
 #include <stdint.h>
 #include <pmm.hpp>
-#include <regs.h>
 #include <paging.hpp>
 typedef phys_t virt_t;
 struct pagemap_tbl {
     bool active:1;
-    bool writable:1;
+    bool writeable:1;
     bool unprivileged:1;
     bool no_write_cache:1;
     bool no_read_cache:1;
@@ -22,7 +21,7 @@ static_assert(sizeof(pagemap_tbl)==8);
 
 struct pagemap {
     bool active:1;
-    bool writable:1;
+    bool writeable:1;
     bool unprivileged:1;
     bool no_write_cache:1;
     bool no_read_cache:1;
@@ -69,7 +68,6 @@ struct pagetbl {
     phys_t page:40;
     uint16_t ignored2:11;
     bool executable:1;
-}
 }__attribute__((packed));
 
 

@@ -12,7 +12,7 @@ void setMainTTY(TTY *obj);
 /**
  * Halts the kernel due to a unresolvable error
  */
-extern "C" void panic(const char* s);
+extern "C" __attribute__((noreturn)) void panic(const char* s);
 
 #if !defined(__LITTLE_ENDIAN__) || !defined(__BIG_ENDIAN__)
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__

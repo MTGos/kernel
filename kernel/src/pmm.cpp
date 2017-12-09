@@ -1,6 +1,6 @@
 #include <base.hpp>
 
-#ifdef BITS == 64
+#ifdef __x86_64__
 #include "pmm64.hpp"
 #else
 #include "pmm32.hpp"
