@@ -2,6 +2,7 @@
 #include <base.hpp>
 extern int kernel_start;
 extern int kernel_end;
+pagedir global_kernel[256];
 paging_context_x86::paging_context_x86(): paging_context() {
     *pmm >> pagedir_addr;
     if(context_enabled) {
@@ -175,12 +176,24 @@ paging_context_x86::~paging_context_x86() {
 }
 
 void paging_context_x86::switch_context() {
+    pagedir* p = (pagedir*)pagedir_addr;
+    if(context_enabled)
+        p=(pagedir*)0x400000;
+    for(int i = 0; i < 256; i++) {
+        global_kernel[i]=p[i];
+    }
     asm volatile("mov %0, %%cr3" :: "r"(pagedir_addr) : "memory");
     if(!context_enabled) {
         uint32_t cr0;
         asm volatile("mov %%cr0, %0" : "=r"(cr0));
         cr0 |= (1<<31);
         asm volatile("mov %0, %%cr0" :: "r"(cr0) : "memory");
+    } else {
+        for(int i=0;i<256;i++)
+            if((i>=1)&&(i<=3))
+                continue;
+            else
+                p[i]=global_kernel[i];
     }
     paging_context::switch_context();
 }

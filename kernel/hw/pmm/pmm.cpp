@@ -58,7 +58,7 @@ union MMAPTag {
         uint8_t id;
         uint8_t size;
         uint8_t value;
-    }__attribute__((packed)) BITS;
+    }__attribute__((packed)) BITSi;
     struct {
         uint8_t id;
         uint8_t size;
@@ -108,7 +108,7 @@ PMM_MMAP::PMM_MMAP(): PMM(0x1000) {
                     ;
                 break;
             case 4:
-                bits = tag.BITS.value;
+                bits = tag.BITSi.value;
                 break;
             case 5:
                 if(tag.REGION.permission != PERM::RWX)

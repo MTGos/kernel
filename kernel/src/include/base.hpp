@@ -21,3 +21,9 @@ extern "C" void panic(const char* s);
 #define __BIG_ENDIAN__
 #endif
 #endif
+
+#ifdef __x86_64__
+#define BITS 64
+#else
+#define BITS 32
+#endif

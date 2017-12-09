@@ -17,9 +17,12 @@ CGATerm term;
 VESAfb term(mb_info);
 #endif
 PMM_MB lpmm(mb_info);
+
+#include<paging.hpp>
 void main();
 extern "C" void start(int eax, multiboot_info_t *ebx) {
     mb_info = ebx;
+    context_enabled=false;
     main();
 }
 void drivers_init() {
