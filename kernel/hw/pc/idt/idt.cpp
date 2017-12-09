@@ -23,7 +23,7 @@ void setIDTEntry(int i, void *entry) {
 #endif
 }
 void initIDT() {
-    void *start_vectors = (void *)&intr_stub_0;
+    char *start_vectors = (char *)&intr_stub_0;
     for (int i = 0; i < 256; i++) setIDTEntry(i, start_vectors + 16 * i);
     struct {
         uint16_t size;

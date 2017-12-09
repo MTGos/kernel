@@ -51,7 +51,7 @@ auto getRTC(RTC_date *date) -> void {
     date->years = bcdToVal(read(0x36));
 }
 auto setRTC(RTC_date *date) -> void {
-    auto valToBCD = [](unsigned char c) -> unsigned char { return (c % 10) + (c / 10) << 4; };
+    auto valToBCD = [](unsigned char c) -> unsigned char { return (c % 10) + ((c / 10) << 4); };
     write(0x30, valToBCD(date->seconds));
     write(0x31, valToBCD(date->minutes));
     write(0x32, valToBCD(date->hours));

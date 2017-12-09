@@ -16,7 +16,7 @@ auto I2C::getResult() -> bool {
     waitBusy();
     return buses[busID]->ctl & 0x10;
 }
-auto I2C::stop() -> bool {
+auto I2C::stop() -> void {
     buses[busID]->ctl = 0xC0;
     waitBusy();
     buses[busID]->ctl = 0xC5;

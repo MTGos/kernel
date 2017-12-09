@@ -1,15 +1,15 @@
-GCC_VERSION=7.1.0
-GCC_MAJOR_VERSION=7.1.0
-gcc.tar.bz2: gcc-$(GCC_VERSION).tar.bz2
+GCC_VERSION=7.2.0
+GCC_MAJOR_VERSION=7.2.0
+gcc.tar.xz: gcc-$(GCC_VERSION).tar.xz
 	mv $^ $@
 
-gcc-$(GCC_VERSION).tar.bz2:
+gcc-$(GCC_VERSION).tar.xz:
 	wget https://ftp.gnu.org/gnu/gcc/gcc-$(GCC_MAJOR_VERSION)/$@
 
 gcc/: gcc-$(GCC_VERSION)/
 	mv $^ $@
 
-gcc-$(GCC_VERSION)/: gcc.tar.bz2
+gcc-$(GCC_VERSION)/: gcc.tar.xz
 	tar -xf $^
 
 gcc-patch:
@@ -28,4 +28,5 @@ gcc-make: gcc-configure
 	$(MAKE) -C builddir all-target-libgcc
 
 gcc-install: gcc-make
-	$(MAKE) -C builddir install-gcc install-target-libgcc
+	$(MAKE) -C builddir install-gcc
+	$(MAKE) -C builddir  install-target-libgcc

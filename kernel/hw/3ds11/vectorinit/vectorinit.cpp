@@ -32,7 +32,7 @@ IRQ_IO::IRQ_IO() {
         *((volatile uint32_t*)(0x17E01100+i))=~0;
     }
     uint32_t intid;
-    while((intid=*((volatile uint32_t*)0x17E00118))&1023!=1023) {
+    while(((intid=*((volatile uint32_t*)0x17E00118))&1023)!=1023) {
         *((volatile uint32_t*)0x17E00110)=intid;
     }
 }

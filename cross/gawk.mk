@@ -1,4 +1,4 @@
-GAWK_VERSION=4.1.4
+GAWK_VERSION=4.2.0
 gawk.tar.xz: gawk-$(GAWK_VERSION).tar.xz
 	mv $^ $@
 
