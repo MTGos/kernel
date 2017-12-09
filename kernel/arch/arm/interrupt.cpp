@@ -22,7 +22,7 @@ void print_regdump(cpu_state *state) {
     (*out << " returnAddr: ").puti(state->returnAddr);
     *out << "\n";
 }
-extern "C" void panic2(char *msg, cpu_state *state);
+extern "C" void panic2(const char *msg, cpu_state *state);
 extern "C" cpu_state *handleINT(int number, cpu_state *state) {
     *out << "Interrupt";
     out->puti(number);
@@ -49,7 +49,7 @@ extern "C" cpu_state *handleINT(int number, cpu_state *state) {
     }
     return new_cpu;
 }
-extern "C" void panic2(char *msg, cpu_state *state) {
+extern "C" void panic2(const char *msg, cpu_state *state) {
     out->setColor(Color::RED);
     *out << "KERNEL PANIC: " << msg << "\n";
     print_regdump(state);

@@ -42,7 +42,10 @@ f.write("char font_data[] = {\n")
 for i,c in enumerate(fontbytes):
     if not i % 32:
         f.write("    ")
-    f.write(hex(c)+", ")
+    if c < 0x80:
+        f.write(hex(c)+", ")
+    else:
+        f.write("(char)"+hex(127-c^0x7F)+", ")
     if i % 32 == 31:
         f.write("\n")
 f.write("\n};\n")

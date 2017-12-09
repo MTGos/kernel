@@ -1,4 +1,4 @@
-MPFR_VERSION=3.1.5
+MPFR_VERSION=3.1.6
 mpfr.tar.xz: mpfr-$(MPFR_VERSION).tar.xz
 	mv $^ $@
 

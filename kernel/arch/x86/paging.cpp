@@ -46,7 +46,7 @@ paging_context_x86::paging_context_x86(): paging_context() {
                 continue;
             if(i == 1 || i == 2 || i == 3)
                 continue;
-            pagetbl *pagetbl_start = (pagetbl *)(0x800000 + i << 22);
+            pagetbl *pagetbl_start = (pagetbl *)(0x800000 + (i << 22));
             for(int j=0;j<1024;j++) {
                 if(!pagetbl_start[j].active)
                     continue;
@@ -146,7 +146,7 @@ paging_context_x86::~paging_context_x86() {
     for(int i=256;i<1024;i++) {
         if(!pd[i].active)
             continue;
-        pagetbl *pt = (pagetbl*)(0xC00000+i<<12);
+        pagetbl *pt = (pagetbl*)(0xC00000+(i<<12));
         for(int j=0;j<1024;j++) {
             if(!pt[j].active)
                 continue;
@@ -160,7 +160,7 @@ paging_context_x86::~paging_context_x86() {
     for(int i=1;i<3;i++) {
         if(!pd[i].active)
             continue;
-        pagetbl *pt = (pagetbl*)(0xC00000+i<<12);
+        pagetbl *pt = (pagetbl*)(0xC00000+(i<<12));
         for(int j=0;j<1024;j++) {
             if(!pt[j].active)
                 continue;

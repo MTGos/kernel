@@ -15,7 +15,7 @@ class I2C {
     ~I2C();
     auto waitBusy() -> void;          ///< Waits for the currently selected device to finish
     auto getResult() -> bool;         ///< Returns true when the device sent a ACK
-    auto stop() -> bool;              ///< Stops the current transfer
+    auto stop() -> void;              ///< Stops the current transfer
     auto selectDev(int dev) -> bool;  ///< Selects current I2C device
     auto selectReg(int reg) -> bool;  ///< Selects current register
     auto write(uint8_t data) -> bool; ///< Sends 8 bits of data

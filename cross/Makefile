@@ -18,7 +18,7 @@ include gmp.mk
 include isl.mk
 include cloog.mk
 
-fetch: gawk.tar.xz gcc.tar.bz2 binutils.tar.bz2 mpc.tar.gz mpfr.tar.xz gmp.tar.xz isl.tar.xz cloog.tar.gz
+fetch: gawk.tar.xz gcc.tar.xz binutils.tar.bz2 mpc.tar.gz mpfr.tar.xz gmp.tar.xz isl.tar.xz cloog.tar.gz
 
 extract: gawk/ binutils/ gcc/mpc/ gcc/mpfr/ gcc/gmp/ gcc/isl/ gcc/cloog/
 

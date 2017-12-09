@@ -64,6 +64,7 @@ buildtools/sighax-firm.sh &&
 mv sighax.firm out/ &&
 cp -v build/kernel/kernel out/arm11loaderhax.elf
 
+cat > /dev/null << EOF
 {
     echo 2
     echo 1
@@ -75,3 +76,4 @@ cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/arm-none-eabi.cmake .. &&
 make -j$(nproc) &&
 popd &&
 cp -v build/kernel/kernel out/raspi2.elf
+EOF

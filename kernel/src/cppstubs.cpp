@@ -23,4 +23,5 @@ extern "C" int __cxa_guard_acquire(__guard *g) {
 }
 extern "C" int __cxa_guard_release(__guard *g) {
     *(char *)g = 1;
+    return 0;
 }
