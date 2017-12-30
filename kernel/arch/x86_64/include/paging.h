@@ -39,7 +39,7 @@ static_assert(sizeof(pagemap)==8);
 struct pagedir {
     bool active:1;
     bool writeable:1;
-    bool privileged:1;
+    bool unprivileged:1;
     bool no_write_cache:1;
     bool no_read_cache:1;
     bool accessed:1;
@@ -56,7 +56,7 @@ static_assert(sizeof(pagedir)==8);
 struct pagetbl {
     bool active:1;
     bool writeable:1;
-    bool privileged:1;
+    bool unprivileged:1;
     bool no_write_cache:1;
     bool no_read_cache:1;
     bool accessed:1;
