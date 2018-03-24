@@ -93,6 +93,10 @@ _start3:
     mov %ax, %fs
     mov %ax, %gs
     mov %ax, %ss //Load 64-bit data
+    mov $0xC0000080, %rax
+    rdmsr
+    or $(1<<11), %rcx
+    wrmsr
     mov $mb_ptr, %rsi
     lodsl
     mov %rax, %rdi

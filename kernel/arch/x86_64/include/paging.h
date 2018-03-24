@@ -73,6 +73,7 @@ struct pagetbl {
 
 struct paging_context_x86: public paging_context {
     phys_t pagemaptbl_addr;
+    bool _512G_full, _1G_full, _2M_full;
     paging_context_x86();
     virtual ~paging_context_x86();
     virtual void switch_context();

@@ -4,8 +4,10 @@ extern "C" int kernel_start;
 extern "C" int kernel_end;
 
 static inline void * map(phys_t addr) {
-    if(__builtin_expect(context_enabled, true))
-        return current_context->mmap(addr, (void*)1, protection::RW, false);
+    if(__builtin_expect(context_enabled, true)) {
+        current_context->mmap(addr, (void*)1, protection::RW, false);
+        return nullptr;
+    }
     return (void*)addr;
 }
 static inline void unmap(void* addr) {
