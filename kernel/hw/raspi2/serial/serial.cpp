@@ -34,7 +34,7 @@ auto Serial::serial_puti(int i) -> void {
     char buf[65];
     char *ptr=buf+63;
     ptr[1]=0;
-    char *chars = "0123456789";
+    const char *chars = "0123456789";
     do {
         *(ptr--) = chars[i%10];
         i/=10;

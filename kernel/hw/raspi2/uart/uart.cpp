@@ -1,7 +1,6 @@
 #include "uart.hpp"
-static volatile uint32_t x;
-auto delay = [&x](uint32_t count) {
-    for(x=0;x<count;x++);
+auto delay = [](uint32_t count) {
+    for(uint32_t x=0;x<count;x++);
 };
 UART &UART::getInstance() {
     static UART instance;

@@ -7,6 +7,12 @@
 .section .text.boot
 _start:
     CPSID aif //Disable interrupts
+    //check if current cpu is cpu0
+1:
+    mrc p15, 0, r0, c0, c0, 5;
+    ands r0, #3
+    wfine
+    bne 1b
     ldr sp,  =svc_stack
     push {r0,r1,r2}
     //set other stacks
