@@ -1,4 +1,4 @@
-BINUTILS_VERSION=2.29.1
+BINUTILS_VERSION=2.30
 binutils.tar.bz2: binutils-$(BINUTILS_VERSION).tar.bz2
 	mv $^ $@
 

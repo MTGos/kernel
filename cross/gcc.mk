@@ -1,5 +1,5 @@
-GCC_VERSION=7.2.0
-GCC_MAJOR_VERSION=7.2.0
+GCC_VERSION=7.3.0
+GCC_MAJOR_VERSION=7.3.0
 gcc.tar.xz: gcc-$(GCC_VERSION).tar.xz
 	mv $^ $@
 
@@ -24,8 +24,8 @@ gcc-configure:
 	../gcc/configure --prefix=$(CROSSPATH) --target=$(TARGET) --disable-nls --enable-languages=c,c++ --without-headers
 
 gcc-make: gcc-configure
-	$(MAKE) -C builddir all-gcc
-	$(MAKE) -C builddir all-target-libgcc
+	$(MAKE) -C builddir all-gcc || $(MAKE) -C builddir all-gcc -j1
+	$(MAKE) -C builddir all-target-libgcc || $(MAKE) -C builddir all-target-libgcc -j1
 
 gcc-install: gcc-make
 	$(MAKE) -C builddir install-gcc
